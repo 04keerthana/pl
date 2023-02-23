@@ -1,0 +1,77 @@
+<div style="margin-left: 15%;width: 25%; height: 100%; margin-bottom: 20%;">
+    <form (ngSubmit)="doFormSubmit()" #planterForm="ngForm">
+
+        <div class="form-group">
+
+            <label>Enter Planter Id</label>
+            <input type="text" [(ngModel)]="p.planterId"  
+            class="form-control" id="pid" 
+             name="pid" #planterId="ngModel"  required pattern="[0-9][0-9][0-9]">
+            <div *ngIf="planterId.invalid">
+                <span style="color: red;" *ngIf="planterId.errors?.['required']">
+                   
+                   Planter Id is required Field 
+               </span> 
+               <span style="color: red;" *ngIf="planterId.errors?.['pattern']">
+                   Planter Id is not valid
+               </span>
+             </div>
+
+
+             
+        </div>
+
+
+        <div class="form-group">
+            <label >Planter Name</label>
+            <input type="text" #planterName="ngModel"  pattern="[a-zA-Z]+"    [(ngModel)]="p.planterName" class="form-control" id="pname" name="pname" placeholder="exp {like Plant, Seed }" required>
+            <div *ngIf="planterName.invalid">
+                <span style="color: red;" *ngIf="planterName.errors?.['required']">
+                   
+                   Planter Name is required Field 
+               </span> 
+               <span style="color: red;" *ngIf="planterName.errors?.['pattern']">
+                   Planter Name is not valid
+               </span>
+             </div>
+        </div>          
+        
+         <div class="form-group">
+            <label>Height</label>
+            <input type="text"  [(ngModel)]="p.height" class="form-control" id="pheight"  name="pheight" placeholder="In cm">
+        </div> 
+        <div class="form-group">
+            
+                <label class="mr-sm-2">Planter Category</label>
+                <select   [(ngModel)]="p.category"  class="form-control form-control-lg" id="pCategory" name="pCategory">
+                  <option selected>Choose...</option>
+                  <option value="Plant">Plant</option>
+                  <option value="Seed">Seed</option>
+                </select>
+          
+        </div> 
+        
+       
+        
+        <div class="form-group">
+            <label>Price</label>
+            <input type="number"  [(ngModel)]="p.price"  class="form-control" id="pprice"  name="pprice" placeholder="In USD $">
+        </div>  
+        <div class="form-group">
+            <label>Discount</label>
+            <input type="number"  [(ngModel)]="p.discount" class="form-control" id="pdiscount"  name="pdiscount" placeholder="In %">
+        </div>
+
+        <div class="form-group">
+            <label>About Planter</label>
+            <textarea   [(ngModel)]="p.about"   class="form-control" id="aboutPlanter" name="aboutPlanter" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <label>Image</label>
+            <input  [(ngModel)]="p.imageName"   type="text" class="form-control" id="image"  name="image" placeholder="with extention exp *.JPG">
+        </div>
+        
+        <button type="submit" class="btn btn-primary mb-2" [disabled]="planterForm.form.invalid"  >Add Plant</button>
+    </form>
+    
+</div>
